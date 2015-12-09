@@ -100,7 +100,7 @@ In the HTML DOM (Document Object Model), everything is a node:
 `element`
 
 | Attribute        | Description                                            |
-| ---------------- |:------------------------------------------------------:|
+| ---------------- |:------------------------------------------------------ |
 | .children        | Returns a collection of an element's child element (excluding text and comment nodes) |
 | .childNodes      | Returns a collection of an element's child nodes (including text and comment nodes) |
 | .firstChild      | Returns the first child node of an element             |
@@ -117,7 +117,7 @@ Methods are available on any element:
 `element`
 
 | Attribute               | Description                                     |
-| ----------------------- |:-----------------------------------------------:|
+| ----------------------- |:----------------------------------------------- |
 | .getElementsByTagName   | Returns a collection of all child elements with the specified tag name |
 | .getElementsByClassName | Returns a collection of all child elements with the specified class name |
 | .querySelector          | Returns the first child element that matches a specified CSS selector(s) of an element |
