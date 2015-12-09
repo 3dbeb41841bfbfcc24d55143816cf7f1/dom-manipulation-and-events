@@ -109,6 +109,7 @@ In the HTML DOM (Document Object Model), everything is a node:
 | .parentElement   | Returns the parent element node of an element          |
 | .parentNode      | Returns the parent node of an element                  |
 | .classList       | Returns the class name(s) of an element                |
+| .innerHTML       | Sets or returns the content of an element              |
 
 Methods are available on any element:
 
@@ -126,6 +127,8 @@ Methods are available on any element:
 | .replaceChild           | Replaces a child node in an element
 
 > You can use `document.getElementById(anElementId)` to lookup an element by it's ID.
+
+See more element properties and methods at [DOM properties and methods](http://www.w3schools.com/jsref/dom_obj_all.asp).
 
 ## You Do: Selecting DOM elements (10 min)
 
