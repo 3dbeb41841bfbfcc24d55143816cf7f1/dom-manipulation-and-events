@@ -177,6 +177,24 @@ An event handler is a JavaScript function that is called whenever the browser de
 
 ### Registering an Event Handler
 
+> Window.onload
+
+When the window is loading it will take a while (in computer time) before it is ready for you to start adding events to the page.
+
+Here is a safe way to ensure that the DOM is ready before you start adding event handlers.
+
+```html
+<div id="weather">
+  <h1>Today's weather is nice!</h1>
+</div>
+<script type="text/javascript">
+    window.onload = function(){
+      var el = document.getElementById("weather");
+      el.style.backgroundColor = "blue";
+    }
+</script>
+```
+
 - .onclick
 - .addEventListener
   - click
