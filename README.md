@@ -1,179 +1,150 @@
-# Marc jQuery/JS DOM Events
+---
+title: Document Object Model
+type: lesson
+duration: 1
+authors:
+    creators: Jesse Shawl (DC)
+    editors: John Master (DC), Matt Scilipoti (DC), Mike Hopper (ATL)
+competencies: Programming, Javascript
+---
 
-##Agenda - IWBAT...
+# DOM
 
-- Understand Event Driven Programming
-- Create addEventListeners
-- Understand and create DOM Events
-- Explain why we need to use a `window.onload` function.
-- Understand Event bubbling and stop event propagation
+- Explain what the DOM is and how it is structured
+- Select and target DOM elements using DOM methods
+- Select and target DOM elements using a query selector
+- Create, read, update, and delete DOM elements
+- Change the attributes or content of a DOM element
 
-<br>
+## Document Object Model (5 min)
 
-## Event Driven Programming
+The [**D**ocument **O**bject **M**odel](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction)
+is a programming interface for HTML.
 
-We've written a couple of different kinds of programs so far. Imperative ones, and Object-Oriented ones. 
+An HTML *document* is available for us to manipulate as an object, and this object is structured like a tree:
 
-- **Imperative** code that starts at the top line, and chugs down through it until it finishes. 
-- **Object oriented** programs, where we define a bunch of objects and then our code jumps around as necessary. 
+Not like [this tree](http://hakim.se/experiments/css/domtree/).
 
-But we've also written **event-driven** programs, though we haven't called it that. 
+More like this:
 
-- When our web server runs, it sets up our app and then just sits there. 
-- It's not until something happens - an event - our visit to the web page - that our code runs. 
+![](http://www.tuxradar.com/files/LXF118.tut_grease.diagram.png)
 
-We can define events on elements, and what JS to run when the event happens. 
-
-<br>
-
-## addEventListener
-
-Before we dive into jQuery events lets take a look at how traditional Javascript handles events. The concept of 'events' will also be important when we get to front-end JS frameworks.
-
-The `addEventListener()` method attaches an event handler to the specified element.
-
-`element.addEventListener(event, function, useCapture);`
-
-- The first parameter is the type of the event (like "click" or "mousedown").
-- The second parameter is the function we want to call when the event occurs.
-- The third parameter is a boolean value specifying whether to use event bubbling or event capturing. This parameter is optional.
-
-<br>
-
-
-## Event Bubbling - Lowest to highest
-
-What if you have an `a href` within another click event listener? Maybe hovering over faces in facebook?
-
-
-Open the next file from London: `bubbling_events.html`
-
-Demonstrate that you can comment out the child #2 stop prop and the difference it makes.
-
-The concept of **event bubbling** was introduced to deal with situations where a single event, such as a mouse click, may be handled by two or more event handlers defined at different levels of the **Document Object Model (DOM)** hierarchy. If this is the case, the event bubbling process starts by executing the event handler defined for individual elements at the **lowest level** (e.g. individual hyperlinks, buttons, table cells etc.). From there, the event bubbles up to the containing elements (e.g. a table or a form with its own event handler), then up to even higher-level elements (e.g. the BODY element of the page). Finally, the event ends up being handled at the highest level in the DOM hierarchy, the document element itself (provided that your document has its own event handler).
-
-## Event Capturing - Lowest to highest
-Event capturing is the opposite of bubbling (events are handled at higher levels first, then sink down to individual elements at lower levels). Event capturing is supported in fewer browsers and rarely used; notably, Internet Explorer prior to version 9.0 does not support event capturing.
-
-### Event Propagation
-
-The term **event propagation** is often used as a synonym of event bubbling. However, strictly speaking, event propagation is a wider term: it includes not only **event bubbling** but also **event capturing**. 
+Or this:
 
 ```
-.stopPropagation();
+html
+└── head
+│   ├──title
+│   ├──meta
+│   ├──link[rel="stylesheet"]
+|   └──script[type="text/javascript"]
+|
+└── body
+    ├── header
+    │   ├── h1
+    │   └── nav
+    └── section.simplicity
+    |   └── h2
+    │   └── article
+    ├── section.life
+    |   └── h2
+    │   └── article
+    │       └── block_quote
+    │       └── block_quote
+    └── footer
 ```
 
-<br>
+Let's look at the structure of [a page](https://github.com/ga-dc/js-dom-quotes)
 
-## DOM Events
+## Accessing the document (10 min)
 
-[Inspired from SF Lesson](https://github.com/sf-wdi-15/notes/blob/master/week_01_programming_fundamentals_with_the_web/day_4_dom/dusk_dom/README.md)
+`document`
+  - `document.head`
+  - `document.body`
 
- We can try this on the Atlanta CL page or use this [codepen](http://codepen.io/marcwright/pen/xGwrdg?editors=101).
+Each web page loaded in the browser has its own document object. The Document interface serves as an entry point to the web page's content
 
+### Element attributes
 
-### `monitorEvents` 
+`document.body`
+  - .children
+  - .childNodes
+  - .firstChild
+  - .lastChild
+  - .nextSibling
+  - .parentElement
+  - .parentNode
 
-In chrome we can try the following:
+Methods are available on any element.
 
-`monitorEvents(window)` 
+### Methods for selecting elements
 
+- document.getElementById
+- document.getElementsByTagName
+- document.getElementsByClassName
+- document.querySelector
+- document.querySelectorAll
 
-Let's listen for a click on a `div` on our `greeting` div;
+## You Do: Selecting DOM elements (10 min)
 
-```
-document.getElementById("greeting").onclick = function(event){
-  alert("Clicked!!")
-};
-```
-we can also listen for other types of events like hovering
+https://github.com/ga-dc/js-dom-quotes
 
-```
-document.getElementById("greeting").onmouseover = function(event){
-  alert("hovering!!")
-};
+## Altering DOM Elements (5 min)
 
-```
-or after we're done hover
+- [.textContent](https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent)
+- .innerHTML
+- .setAttribute(name, value);
+- .id
+- .classList.toggle (add, remove, contains)
+- .style
 
-```
-document.getElementById("greeting").onmouseout = function(event){
-  alert("read anything interesting??")
-};
+## You do: Logo hijack (15 min)
 
-```
+1. Open up www.google.com in Chrome or Firefox, and open up the console.
+- Store the url to the Yahoo logo in a variable.
+- Find the Google logo and store it in a variable.
+- Modify the source of the logo IMG so that it's a Yahoo logo instead.
+- Find the Google search button and store it in a variable.
+- Modify the text of the button so that it says "Yahooo!" instead.
 
-<br>
+Bonus: Add a new element between the image and the search textbox, telling the world that "Yahoo is the new Google".
 
+## Creating/Removing DOM Elements (1 min)
 
-## Window.onload
-When the window is loading it will take a while before it is ready for you to start adding events to the page.
+- [Document.createElement](https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement)
+- [Node.appendChild](https://developer.mozilla.org/en-US/docs/Web/API/Node/appendChild)
+- Node.removeChild
 
+## Break (5 min)
 
-This will work:
+## Events (10 min)
 
-```
-<script type="text/javascript">
-    window.onload = function(){
-      var el = document.getElementById("blue_div");
-      el.style.backgroundColor = "blue";
-    }
-</script>
+What is an event?
+http://eloquentjavascript.net/14_event.html
 
-```
+- .onclick
+- .addEventListener
+  - click
+  - mouseover
+- .preventDefault()
 
+## Examples
 
+- [jessica hische](http://jessicahische.is/)
+- [color scheme switcher](https://github.com/ga-dc/color-scheme-switcher)
 
-<br>
+## Conclusion (5 min)
 
-## Lab/Code Along
+1. What is the difference between a method and an attribute?
+2. What is the difference between `onclick` and `addEventListener?`
 
-[JSFiddle Starter with instructions](http://jsfiddle.net/marcwright/x6ncsqLz/1/) - **Be sure to fork!**
+## Break (10 min)
+---
 
-[JSFiddle Finished](http://jsfiddle.net/marcwright/x4u5D/149/) 
+## Homework
 
-[JSBin Starter](http://jsbin.com/rawigi/3/edit) - **Be sure to clone!**
-
-[JSBin Finished](http://jsbin.com/kalutepori/2/edit)
-
-Examples:
-
-- click me
-- show/hide - add the code below to toggle:
-
-```
-//make the show button a Toggle
-<button id="show-btn">Toggle menu</button>
-
-//change the show function to a toggle
-$("#show-btn").click(handleMenu)
-
-function handleMenu() {
- $("#menu").toggle();     
-}
-```
-
-- keyup with binding
-- To do list appendTo() and prependTo()
-- add to todo list to make done items green:
-```
-.css('background-color', 'green');
-```
-- you can also add a class: `.addClass('large');`
-
-<br>
-
-##LAB
-
-- Convert traffic light to jquery. Add the starter and js finished versions to their repo.
-- Headless DOM?
+<https://github.com/ga-dc/fellowship>
 
 
-Others:
-
-- Add jquery to blackout (it uses a function) - could be a morning exercise.
-- add jquery to color switcher js version
-- convert the click events to jquery
-- convert jedi academy to jquery
-- add a jquery feature to your project
-
+## References
+- - https://developer.mozilla.org/en-US/docs/Web/API/Event
