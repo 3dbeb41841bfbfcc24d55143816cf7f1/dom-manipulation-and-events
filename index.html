@@ -1,0 +1,22 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Sample HTML5 Page</title>
+  <meta name="description" content="Sample HTML Page">
+  <meta name="author" content="Mike Hopper">
+</head>
+
+<body>
+  <h1>JavaScript Events</h1>
+  <button>Click me</button>
+  <script>
+    var button = document.querySelector("button");
+    var count = 0;
+    button.addEventListener("click", function() {
+      console.log("Button was clicked: " + (++count));
+    });
+  </script>
+</body>
+</html>

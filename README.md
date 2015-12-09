@@ -23,9 +23,7 @@ is a programming interface for HTML.
 
 An HTML *document* is available for us to manipulate as an object, and this object is structured like a tree:
 
-Not like [this tree](http://hakim.se/experiments/css/domtree/).
-
-More like this:
+Like this:
 
 ![](http://www.tuxradar.com/files/LXF118.tut_grease.diagram.png)
 
@@ -54,7 +52,31 @@ html
     └── footer
 ```
 
-Let's look at the structure of [a page](https://github.com/ga-dc/js-dom-quotes)
+Let's create a web page and begin to inspect its structure.
+
+```html
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Sample HTML5 Page</title>
+  <meta name="description" content="Sample HTML Page">
+  <meta name="author" content="Mike Hopper">
+</head>
+
+<body>
+  <section id="main">
+    <h1>The DOM Rocks!</h1>
+    <p>When this document gets loaded into the browser's memory, it is transformed from a static HTML document to a dynamic DOM tree. At this point we can use JavaScript to inspect and manipulate the nodes in the DOM tree.</p>
+  </section>
+</body>
+</html>
+```
+
+Here is the DOM tree for the above HTML document:
+
+![DOM Tree](https://raw.githubusercontent.com/ATL-WDI-Curriculum/dom-events/master/images/dom-tree.png)
 
 ## Accessing the document (10 min)
 
