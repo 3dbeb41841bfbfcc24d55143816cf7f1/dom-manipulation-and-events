@@ -84,28 +84,48 @@ Here is the DOM tree for the above HTML document:
   - `document.head`
   - `document.body`
 
-Each web page loaded in the browser has its own document object. The Document interface serves as an entry point to the web page's content
+Each web page loaded in the browser has its own `document` object. The Document interface serves as an entry point to the web page's content.
+
+### Everything is a Node
+In the HTML DOM (Document Object Model), everything is a node:
+
+* The document itself is a document node
+* All HTML elements are element nodes
+* All HTML attributes are attribute nodes
+* Text inside HTML elements are text nodes
+* Comments are comment nodes
 
 ### Element attributes
 
-`document.body`
-  - .children
-  - .childNodes
-  - .firstChild
-  - .lastChild
-  - .nextSibling
-  - .parentElement
-  - .parentNode
+`element`
 
-Methods are available on any element.
+| Attribute        | Description                                            |
+| ---------------- |:------------------------------------------------------:|
+| .children        | Returns a collection of an element's child element (excluding text and comment nodes) |
+| .childNodes      | Returns a collection of an element's child nodes (including text and comment nodes) |
+| .firstChild      | Returns the first child node of an element             |
+| .lastChild       | Returns the last child node of an element              |
+| .nextSibling     | Returns the next node at the same node tree level      |
+| .parentElement   | Returns the parent element node of an element          |
+| .parentNode      | Returns the parent node of an element                  |
+| .classList       | Returns the class name(s) of an element                |
 
-### Methods for selecting elements
+Methods are available on any element:
 
-- document.getElementById
-- document.getElementsByTagName
-- document.getElementsByClassName
-- document.querySelector
-- document.querySelectorAll
+### Element methods
+
+`element`
+
+| Attribute               | Description                                     |
+| ----------------------- |:-----------------------------------------------:|
+| .getElementsByTagName   | Returns a collection of all child elements with the specified tag name |
+| .getElementsByClassName | Returns a collection of all child elements with the specified class name |
+| .querySelector          | Returns the first child element that matches a specified CSS selector(s) of an element |
+| .querySelectorAll       | Returns all child elements that matches a specified CSS selector(s) of an element |
+| .removeChild            | Removes a child node from an element
+| .replaceChild           | Replaces a child node in an element
+
+> You can use `document.getElementById(anElementId)` to lookup an element by it's ID.
 
 ## You Do: Selecting DOM elements (10 min)
 
