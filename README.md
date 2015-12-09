@@ -132,27 +132,7 @@ See more element properties and methods at [DOM properties and methods](http://w
 
 ## You Do: Selecting DOM elements (10 min)
 
-https://github.com/ga-dc/js-dom-quotes
-
-## Altering DOM Elements (5 min)
-
-- [.textContent](https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent)
-- .innerHTML
-- .setAttribute(name, value);
-- .id
-- .classList.toggle (add, remove, contains)
-- .style
-
-## You do: Logo hijack (15 min)
-
-1. Open up www.google.com in Chrome or Firefox, and open up the console.
-- Store the url to the Yahoo logo in a variable.
-- Find the Google logo and store it in a variable.
-- Modify the source of the logo IMG so that it's a Yahoo logo instead.
-- Find the Google search button and store it in a variable.
-- Modify the text of the button so that it says "Yahooo!" instead.
-
-Bonus: Add a new element between the image and the search textbox, telling the world that "Yahoo is the new Google".
+https://github.com/ATL-WDI-Exercises/js-dom-quotes
 
 ## Creating/Removing DOM Elements (1 min)
 
@@ -164,8 +144,38 @@ Bonus: Add a new element between the image and the search textbox, telling the w
 
 ## Events (10 min)
 
-What is an event?
-http://eloquentjavascript.net/14_event.html
+Event handlers
+
+> Imagine an interface where the only way to find out whether a key on the keyboard is being pressed is to read the current state of that key. To be able to react to keypresses, you would have to constantly read the key’s state so that you’d catch it before it’s released again. It would be dangerous to perform other time-intensive computations since you might miss a keypress.
+
+> A better mechanism is for the underlying system to give our code a chance to react to events as they occur. Browsers do this by allowing us to register functions as handlers for specific events.
+
+The above was taken from [Eloquent JavaScript](http://eloquentjavascript.net/14_event.html).
+
+### What is an event?
+
+An event is an object that is created whenever anything interesting happens (usually something the user did), such as a mouse click, a key press, or a scroll up or down.
+
+Every DOM element has its own addEventListener method, which allows you to listen specifically on that element.
+
+### What is an Event Handler?
+
+An event handler is a JavaScript function that is called whenever the browser detects a specific kind of event. The event handler receives the event object and performs any needed processing, which may include manipulating the DOM tree.
+
+### Example:
+
+```html
+<button>Click me</button>
+  <script>
+    var button = document.querySelector("button");
+    var count = 0;
+    button.addEventListener("click", function() {
+      console.log("Button was clicked: " + (++count));
+    });
+  </script>
+```
+
+### Registering an Event Handler
 
 - .onclick
 - .addEventListener
@@ -175,16 +185,13 @@ http://eloquentjavascript.net/14_event.html
 
 ## Examples
 
-- [jessica hische](http://jessicahische.is/)
-- [color scheme switcher](https://github.com/ga-dc/color-scheme-switcher)
+* http://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_element_addeventlistener
+
 
 ## Conclusion (5 min)
 
 1. What is the difference between a method and an attribute?
 2. What is the difference between `onclick` and `addEventListener?`
-
-## Break (10 min)
----
 
 ## Homework
 
