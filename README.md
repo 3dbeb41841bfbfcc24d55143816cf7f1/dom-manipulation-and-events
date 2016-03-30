@@ -230,6 +230,7 @@ element.onclick(someFunction);                          // a shortcut for addEve
 element.addEventListener('click', someFunction);        // register a function when a click event occurs on element
 element.addEventListener('mouseover', someFunction);    // register a function when a mouseover (hover) event occurs on element
 element.preventDefault();                               // prevent the default behavior from happening
+```
 
 ## Examples
 
@@ -257,4 +258,4 @@ element.preventDefault();                               // prevent the default b
 * [DOM Event](https://developer.mozilla.org/en-US/docs/Web/API/Event)
 * [DOM Reference](https://developer.mozilla.org/en-US/docs/DOM/DOM_Reference)
 * [DOM CheatSheet](http://christianheilmann.com/stuff/JavaScript-DOM-Cheatsheet.pdf)
-```
+
