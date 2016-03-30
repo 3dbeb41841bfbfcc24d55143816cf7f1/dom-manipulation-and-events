@@ -101,7 +101,7 @@ In the HTML DOM (Document Object Model), everything is a node:
 
 | Attribute        | Description                                            |
 | ---------------- |:------------------------------------------------------ |
-| .children        | Returns a collection of an element's child element (excluding text and comment nodes) |
+| .children        | Returns a collection of an element's child elements (excluding text and comment nodes) |
 | .childNodes      | Returns a collection of an element's child nodes (including text and comment nodes) |
 | .firstChild      | Returns the first child node of an element             |
 | .lastChild       | Returns the last child node of an element              |
@@ -134,11 +134,15 @@ See more element properties and methods at [DOM properties and methods](http://w
 
 https://github.com/ATL-WDI-Exercises/js-dom-quotes
 
-## Creating/Removing DOM Elements (1 min)
+## Creating/Removing DOM Elements (5 min)
 
-- [Document.createElement](https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement)
-- [Node.appendChild](https://developer.mozilla.org/en-US/docs/Web/API/Node/appendChild)
-- Node.removeChild
+* [Document.createElement](https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement)
+* [Node.appendChild](https://developer.mozilla.org/en-US/docs/Web/API/Node/appendChild)
+* [Node.removeChild](https://developer.mozilla.org/en-US/docs/Web/API/Node/removeChild)
+
+### Example
+
+[CodePen: JavaScript DOM Manipulation Example](https://codepen.io/drmikeh/pen/YqxaPx?editors=1010)
 
 ## Break (5 min)
 
@@ -156,65 +160,100 @@ The above was taken from [Eloquent JavaScript](http://eloquentjavascript.net/14_
 
 An event is an object that is created whenever anything interesting happens (usually something the user did), such as a mouse click, a key press, or a scroll up or down.
 
-Every DOM element has its own addEventListener method, which allows you to listen specifically on that element.
+***Every DOM element*** has its own `addEventListener` method, which allows you to listen specifically on that element.
 
 ### What is an Event Handler?
 
-An event handler is a JavaScript function that is called whenever the browser detects a specific kind of event. The event handler receives the event object and performs any needed processing, which may include manipulating the DOM tree.
+An ***event handler*** is a JavaScript function that is called whenever the browser detects a specific kind of event. The event handler receives the event object and performs any needed processing, which may include manipulating the DOM tree.
 
 ### Example:
 
+[CodePen: Simple DOM Event Example](http://codepen.io/drmikeh/pen/RaZMax/?editors=1111)
+
 ```html
 <button>Click me</button>
-  <script>
-    var button = document.querySelector("button");
-    var count = 0;
-    button.addEventListener("click", function() {
-      console.log("Button was clicked: " + (++count));
-    });
-  </script>
-```
-
-### Registering an Event Handler
-
-> Window.onload
-
-When the window is loading it will take a while (in computer time) before it is ready for you to start adding events to the page.
-
-Here is a safe way to ensure that the DOM is ready before you start adding event handlers.
-
-```html
-<div id="weather">
-  <h1>Today's weather is nice!</h1>
+<div id="div1">
 </div>
-<script type="text/javascript">
-    window.onload = function(){
-      var el = document.getElementById("weather");
-      el.style.backgroundColor = "blue";
-    }
-</script>
 ```
 
-- .onclick
-- .addEventListener
-  - click
-  - mouseover
-- .preventDefault()
+```css
+body {
+  margin: 20px;
+}
+button {
+  background: blue;
+  color: white;
+}
+div {
+  margin: 3px;
+  padding: 3px;
+
+}
+#div1 {
+  margin-top: 10px;
+  border-radius: 10px;
+  background: lightblue;
+}
+```
+
+```javascript
+window.onload = function() {
+  var button = document.querySelector("button");
+  var count = 0;
+  button.addEventListener("click", function() {
+    console.log("Button was clicked: " + (++count));
+    addElement(count);
+  });
+}
+function addElement(num) {
+  // create a new div element and give it some content
+  var newDiv = document.createElement("div");
+  var newContent = document.createTextNode("Button was clicked: " + num);
+  // add the text node to the newly created div.
+  newDiv.appendChild(newContent);
+  // add the newly created element and its content into the DOM
+  var currentDiv = document.getElementById("div1");
+  currentDiv.appendChild(newDiv);
+}
+```
+
+### Waiting for the DOM to load
+
+> window.onload
+
+When the window is loading it will take a while (in computer time) before it is ready for you to start adding events to the page. We can assign a function to `window.onload` and the function will ***wait*** until the DOM is fully loaded before executing the function.
+
+### Common DOM Events
+
+```javascript
+element.onclick(someFunction);                          // a shortcut for addEventListener("click")
+element.addEventListener('click', someFunction);        // register a function when a click event occurs on element
+element.addEventListener('mouseover', someFunction);    // register a function when a mouseover (hover) event occurs on element
+element.preventDefault();                               // prevent the default behavior from happening
 
 ## Examples
+
+[[CodePen: Simple DOM Event Example 2](http://codepen.io/drmikeh/pen/VazXRd?editors=1011)
 
 * http://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_element_addeventlistener
 
 
 ## Conclusion (5 min)
 
-1. What is the difference between a method and an attribute?
-2. What is the difference between `onclick` and `addEventListener?`
+* Explain the sentence: 'The DOM is a data structure and an API'.
+* When would you use `document.getElementById`?
+* What does `element.appendChild(anotherElement)` do?
+* Why is it a good practice to use `window.onload`?
+* What is an Event Handler?
+* What are some examples of DOM events?
+* What is the difference between `onclick` and `addEventListener?`
 
 ## Homework
 
-<https://github.com/ga-dc/fellowship>
-
+[Fellowship of the Ring DOM Manipulation](https://github.com/ATL-WDI-Exercises/fellowship)
 
 ## References
-- - https://developer.mozilla.org/en-US/docs/Web/API/Event
+
+* [DOM Event](https://developer.mozilla.org/en-US/docs/Web/API/Event)
+* [DOM Reference](https://developer.mozilla.org/en-US/docs/DOM/DOM_Reference)
+* [DOM CheatSheet](http://christianheilmann.com/stuff/JavaScript-DOM-Cheatsheet.pdf)
